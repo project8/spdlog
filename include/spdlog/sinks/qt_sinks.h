@@ -88,6 +88,9 @@ public:
         // info
         format.setForeground(dark_colors ? Qt::darkGreen : Qt::green);
         colors_.at(level::info) = format;
+        // notice
+        format.setForeground(dark_colors ? Qt::darkBlue : Qt::blue);
+        colors_.at(level::notice) = format;
         // warn
         format.setForeground(dark_colors ? Qt::darkYellow : Qt::yellow);
         colors_.at(level::warn) = format;

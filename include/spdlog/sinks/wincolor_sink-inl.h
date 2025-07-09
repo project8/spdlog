@@ -25,6 +25,7 @@ SPDLOG_INLINE wincolor_sink<ConsoleMutex>::wincolor_sink(void *out_handle, color
     colors_[level::trace] = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;  // white
     colors_[level::debug] = FOREGROUND_GREEN | FOREGROUND_BLUE;                   // cyan
     colors_[level::info] = FOREGROUND_GREEN;                                      // green
+    colors_[level::notice] = FOREGROUND_BLUE;                                      // blue
     colors_[level::warn] =
         FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;  // intense yellow
     colors_[level::err] = FOREGROUND_RED | FOREGROUND_INTENSITY;   // intense red

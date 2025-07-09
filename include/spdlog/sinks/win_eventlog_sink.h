@@ -162,6 +162,9 @@ struct eventlog {
             case level::info:
                 return EVENTLOG_INFORMATION_TYPE;
 
+            case level::notice:
+                return EVENTLOG_INFORMATION_TYPE;
+
             case level::warn:
                 return EVENTLOG_WARNING_TYPE;
 

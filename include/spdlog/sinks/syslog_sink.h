@@ -24,6 +24,7 @@ public:
           syslog_levels_{{/* spdlog::level::trace      */ LOG_DEBUG,
                           /* spdlog::level::debug      */ LOG_DEBUG,
                           /* spdlog::level::info       */ LOG_INFO,
+                          /* spdlog::level::notice     */ LOG_NOTICE,
                           /* spdlog::level::warn       */ LOG_WARNING,
                           /* spdlog::level::err        */ LOG_ERR,
                           /* spdlog::level::critical   */ LOG_CRIT,
@@ -68,7 +69,7 @@ protected:
         return syslog_levels_.at(static_cast<levels_array::size_type>(msg.level));
     }
 
-    using levels_array = std::array<int, 7>;
+    using levels_array = std::array<int, 8>;
     levels_array syslog_levels_;
 
 private:

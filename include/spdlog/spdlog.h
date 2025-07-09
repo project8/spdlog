@@ -169,6 +169,11 @@ inline void debug(format_string_t<Args...> fmt, Args &&...args) {
 }
 
 template <typename... Args>
+inline void notice(format_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->notice(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
 inline void info(format_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->info(fmt, std::forward<Args>(args)...);
 }
@@ -223,6 +228,11 @@ inline void debug(wformat_string_t<Args...> fmt, Args &&...args) {
 }
 
 template <typename... Args>
+inline void notice(wformat_string_t<Args...> fmt, Args &&...args) {
+    default_logger_raw()->notice(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
 inline void info(wformat_string_t<Args...> fmt, Args &&...args) {
     default_logger_raw()->info(fmt, std::forward<Args>(args)...);
 }
@@ -254,6 +264,11 @@ inline void debug(const T &msg) {
 }
 
 template <typename T>
+inline void notice(const T &msg) {
+    default_logger_raw()->notice(msg);
+}
+
+template <typename T>
 inline void info(const T &msg) {
     default_logger_raw()->info(msg);
 }
@@ -281,6 +296,7 @@ inline void critical(const T &msg) {
 // define SPDLOG_ACTIVE_LEVEL to one of those (before including spdlog.h):
 // SPDLOG_LEVEL_TRACE,
 // SPDLOG_LEVEL_DEBUG,
+// SPDLOG_LEVEL_NOTICE,
 // SPDLOG_LEVEL_INFO,
 // SPDLOG_LEVEL_WARN,
 // SPDLOG_LEVEL_ERROR,
@@ -312,6 +328,15 @@ inline void critical(const T &msg) {
 #else
     #define SPDLOG_LOGGER_DEBUG(logger, ...) (void)0
     #define SPDLOG_DEBUG(...) (void)0
+#endif
+
+#if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_NOTICE
+    #define SPDLOG_LOGGER_NOTICE(logger, ...) \
+        SPDLOG_LOGGER_CALL(logger, spdlog::level::notice, __VA_ARGS__)
+    #define SPDLOG_NOTICE(...) SPDLOG_LOGGER_NOTICE(spdlog::default_logger_raw(), __VA_ARGS__)
+#else
+    #define SPDLOG_LOGGER_NOTICE(logger, ...) (void)0
+    #define SPDLOG_NOTICE(...) (void)0
 #endif
 
 #if SPDLOG_ACTIVE_LEVEL <= SPDLOG_LEVEL_INFO

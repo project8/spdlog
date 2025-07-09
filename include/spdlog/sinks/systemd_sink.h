@@ -29,6 +29,7 @@ public:
           syslog_levels_{{/* spdlog::level::trace      */ LOG_DEBUG,
                           /* spdlog::level::debug      */ LOG_DEBUG,
                           /* spdlog::level::info       */ LOG_INFO,
+                          /* spdlog::level::notice     */ LOG_NOTICE,
                           /* spdlog::level::warn       */ LOG_WARNING,
                           /* spdlog::level::err        */ LOG_ERR,
                           /* spdlog::level::critical   */ LOG_CRIT,
@@ -42,7 +43,7 @@ public:
 protected:
     const std::string ident_;
     bool enable_formatting_ = false;
-    using levels_array = std::array<int, 7>;
+    using levels_array = std::array<int, 8>;
     levels_array syslog_levels_;
 
     void sink_it_(const details::log_msg &msg) override {
