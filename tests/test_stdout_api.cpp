@@ -32,6 +32,7 @@ TEST_CASE("stderr_mt", "[stderr]") {
     auto l = spdlog::stderr_logger_mt("test");
     l->set_pattern("%+");
     l->info("Test stderr_mt");
+    l->notice("Test stderr_mt");
     l->warn("Test stderr_mt");
     l->error("Test stderr_mt");
     l->critical("Test stderr_mt");
@@ -66,6 +67,7 @@ TEST_CASE("stderr_color_mt", "[stderr]") {
     auto l = spdlog::stderr_color_mt("test");
     l->set_pattern("%+");
     l->info("Test stderr_color_mt");
+    l->notice("Test stderr_color_mt");
     l->warn("Test stderr_color_mt");
     l->error("Test stderr_color_mt");
     l->critical("Test stderr_color_mt");

@@ -38,6 +38,7 @@ TEST_CASE("basic_logging ", "[basic_logging]") {
 TEST_CASE("log_levels", "[log_levels]") {
     REQUIRE(log_info("Hello", spdlog::level::err).empty());
     REQUIRE(log_info("Hello", spdlog::level::critical).empty());
+    REQUIRE(log_info("Hello", spdlog::level::notice) == "Hello");
     REQUIRE(log_info("Hello", spdlog::level::info) == "Hello");
     REQUIRE(log_info("Hello", spdlog::level::debug) == "Hello");
     REQUIRE(log_info("Hello", spdlog::level::trace) == "Hello");
@@ -47,6 +48,7 @@ TEST_CASE("level_to_string_view", "[convert_to_string_view]") {
     REQUIRE(spdlog::level::to_string_view(spdlog::level::trace) == "trace");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::debug) == "debug");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::info) == "info");
+    REQUIRE(spdlog::level::to_string_view(spdlog::level::notice) == "notice");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::warn) == "warning");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::err) == "error");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::critical) == "critical");
@@ -57,6 +59,7 @@ TEST_CASE("to_short_c_str", "[convert_to_short_c_str]") {
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::trace)) == "T");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::debug)) == "D");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::info)) == "I");
+    REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::notice)) == "N");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::warn)) == "W");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::err)) == "E");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::critical)) == "C");
@@ -67,6 +70,7 @@ TEST_CASE("to_level_enum", "[convert_to_level_enum]") {
     REQUIRE(spdlog::level::from_str("trace") == spdlog::level::trace);
     REQUIRE(spdlog::level::from_str("debug") == spdlog::level::debug);
     REQUIRE(spdlog::level::from_str("info") == spdlog::level::info);
+    REQUIRE(spdlog::level::from_str("notice") == spdlog::level::notice);
     REQUIRE(spdlog::level::from_str("warning") == spdlog::level::warn);
     REQUIRE(spdlog::level::from_str("warn") == spdlog::level::warn);
     REQUIRE(spdlog::level::from_str("error") == spdlog::level::err);
@@ -150,6 +154,10 @@ TEST_CASE("default logger API", "[default logger]") {
 
     oss.str("");
     spdlog::info("Hello");
+    REQUIRE(oss.str() == "*** Hello" + std::string(spdlog::details::os::default_eol));
+
+    oss.str("");
+    spdlog::notice("Hello");
     REQUIRE(oss.str() == "*** Hello" + std::string(spdlog::details::os::default_eol));
 
     oss.str("");

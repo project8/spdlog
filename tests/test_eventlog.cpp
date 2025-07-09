@@ -64,6 +64,8 @@ TEST_CASE("eventlog", "[eventlog]") {
                       "my debug message", EVENTLOG_SUCCESS);
     test_single_print([&test_logger](std::string const &msg) { test_logger.info(msg); },
                       "my info message", EVENTLOG_INFORMATION_TYPE);
+    test_single_print([&test_logger](std::string const &msg) { test_logger.notice(msg); },
+                      "my notice message", EVENTLOG_INFORMATION_TYPE);
     test_single_print([&test_logger](std::string const &msg) { test_logger.warn(msg); },
                       "my warn message", EVENTLOG_WARNING_TYPE);
     test_single_print([&test_logger](std::string const &msg) { test_logger.error(msg); },

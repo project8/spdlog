@@ -8,6 +8,7 @@ TEST_CASE("systemd", "[all]") {
     logger.trace("test spdlog trace");
     logger.debug("test spdlog debug");
     SPDLOG_LOGGER_INFO((&logger), "test spdlog info");
+    SPDLOG_LOGGER_NOTICE((&logger), "test spdlog notice");
     SPDLOG_LOGGER_WARN((&logger), "test spdlog warn");
     SPDLOG_LOGGER_ERROR((&logger), "test spdlog error");
     SPDLOG_LOGGER_CRITICAL((&logger), "test spdlog critical");
