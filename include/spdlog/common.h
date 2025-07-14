@@ -230,8 +230,8 @@ using level_t = std::atomic<int>;
 
 #define SPDLOG_LEVEL_TRACE 0
 #define SPDLOG_LEVEL_DEBUG 1
-#define SPDLOG_LEVEL_NOTICE 2
-#define SPDLOG_LEVEL_INFO 3
+#define SPDLOG_LEVEL_INFO 2
+#define SPDLOG_LEVEL_NOTICE 3
 #define SPDLOG_LEVEL_WARN 4
 #define SPDLOG_LEVEL_ERROR 5
 #define SPDLOG_LEVEL_CRITICAL 6
@@ -246,8 +246,8 @@ namespace level {
 enum level_enum : int {
     trace = SPDLOG_LEVEL_TRACE,
     debug = SPDLOG_LEVEL_DEBUG,
-    notice = SPDLOG_LEVEL_NOTICE,
     info = SPDLOG_LEVEL_INFO,
+    notice = SPDLOG_LEVEL_NOTICE,
     warn = SPDLOG_LEVEL_WARN,
     err = SPDLOG_LEVEL_ERROR,
     critical = SPDLOG_LEVEL_CRITICAL,
@@ -257,8 +257,8 @@ enum level_enum : int {
 
 #define SPDLOG_LEVEL_NAME_TRACE spdlog::string_view_t("trace", 5)
 #define SPDLOG_LEVEL_NAME_DEBUG spdlog::string_view_t("debug", 5)
-#define SPDLOG_LEVEL_NAME_NOTICE spdlog::string_view_t("notice", 6)
 #define SPDLOG_LEVEL_NAME_INFO spdlog::string_view_t("info", 4)
+#define SPDLOG_LEVEL_NAME_NOTICE spdlog::string_view_t("notice", 6)
 #define SPDLOG_LEVEL_NAME_WARNING spdlog::string_view_t("warning", 7)
 #define SPDLOG_LEVEL_NAME_ERROR spdlog::string_view_t("error", 5)
 #define SPDLOG_LEVEL_NAME_CRITICAL spdlog::string_view_t("critical", 8)
@@ -267,8 +267,8 @@ enum level_enum : int {
 #if !defined(SPDLOG_LEVEL_NAMES)
     #define SPDLOG_LEVEL_NAMES                                                                  \
         {                                                                                       \
-            SPDLOG_LEVEL_NAME_TRACE, SPDLOG_LEVEL_NAME_DEBUG, SPDLOG_LEVEL_NAME_NOTICE,         \
-                SPDLOG_LEVEL_NAME_INFO, SPDLOG_LEVEL_NAME_WARNING, SPDLOG_LEVEL_NAME_ERROR,     \
+            SPDLOG_LEVEL_NAME_TRACE, SPDLOG_LEVEL_NAME_DEBUG, SPDLOG_LEVEL_NAME_INFO,         \
+                SPDLOG_LEVEL_NAME_NOTICE, SPDLOG_LEVEL_NAME_WARNING, SPDLOG_LEVEL_NAME_ERROR,     \
                  SPDLOG_LEVEL_NAME_CRITICAL, SPDLOG_LEVEL_NAME_OFF                              \
         }
 #endif
@@ -276,7 +276,7 @@ enum level_enum : int {
 #if !defined(SPDLOG_SHORT_LEVEL_NAMES)
 
     #define SPDLOG_SHORT_LEVEL_NAMES \
-        { "T", "D", "N", "I", "W", "E", "C", "O" }
+        { "T", "D", "I", "N", "W", "E", "C", "O" }
 #endif
 
 SPDLOG_API const string_view_t &to_string_view(spdlog::level::level_enum l) SPDLOG_NOEXCEPT;
