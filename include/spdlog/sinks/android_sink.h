@@ -94,9 +94,9 @@ private:
             case spdlog::level::info:
                 return ANDROID_LOG_INFO;
             case spdlog::level::notice:
-                return ANDROID_LOG_WARN;
-            case spdlog::level::warn:
                 return ANDROID_LOG_WARN; // Use warning for notice level according to https://source.android.com/docs/core/tests/debug/understanding-logging
+            case spdlog::level::warn:
+                return ANDROID_LOG_WARN;
             case spdlog::level::err:
                 return ANDROID_LOG_ERROR;
             case spdlog::level::critical:

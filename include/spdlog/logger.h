@@ -131,11 +131,6 @@ public:
     }
 
     template <typename... Args>
-    void notice(format_string_t<Args...> fmt, Args &&...args) {
-        log(level::notice, fmt, std::forward<Args>(args)...);
-    }
-
-    template <typename... Args>
     void debug(format_string_t<Args...> fmt, Args &&...args) {
         log(level::debug, fmt, std::forward<Args>(args)...);
     }
@@ -143,6 +138,11 @@ public:
     template <typename... Args>
     void info(format_string_t<Args...> fmt, Args &&...args) {
         log(level::info, fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void notice(format_string_t<Args...> fmt, Args &&...args) {
+        log(level::notice, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
@@ -213,13 +213,13 @@ public:
     }
 
     template <typename... Args>
-    void notice(wformat_string_t<Args...> fmt, Args &&...args) {
-        log(level::notice, fmt, std::forward<Args>(args)...);
+    void info(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::info, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
-    void info(wformat_string_t<Args...> fmt, Args &&...args) {
-        log(level::info, fmt, std::forward<Args>(args)...);
+    void notice(wformat_string_t<Args...> fmt, Args &&...args) {
+        log(level::notice, fmt, std::forward<Args>(args)...);
     }
 
     template <typename... Args>
@@ -249,13 +249,13 @@ public:
     }
 
     template <typename T>
-    void notice(const T &msg) {
-        log(level::notice, msg);
+    void info(const T &msg) {
+        log(level::info, msg);
     }
 
     template <typename T>
-    void info(const T &msg) {
-        log(level::info, msg);
+    void notice(const T &msg) {
+        log(level::notice, msg);
     }
 
     template <typename T>
