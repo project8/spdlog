@@ -16,7 +16,7 @@
 
 namespace spdlog {
 
-    SPDLOG_INLINE void print_stack_trace()
+    SPDLOG_INLINE void print_stack_trace() SPDLOG_NOEXCEPT
     {
         // no mutex locking needed here
         void* t_bt_array[50];
