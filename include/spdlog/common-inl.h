@@ -10,7 +10,33 @@
 #include <algorithm>
 #include <iterator>
 
+#include <iostream>
+#include <execinfo.h>
+#include <sstream>
+
 namespace spdlog {
+
+    SPDLOG_INLINE void print_stack_trace()
+    {
+        // no mutex locking needed here
+        void* t_bt_array[50];
+        int t_size = backtrace( t_bt_array, 50 );
+
+        std::cerr << "Backtrace returned " << t_size << " frames\n" << std::endl;
+
+        char** t_messages = backtrace_symbols( t_bt_array, t_size );
+
+        std::stringstream t_bt_str;
+        for( int i = 0; i < t_size && t_messages != nullptr; ++i )
+        {
+            t_bt_str << "[bt]: (" << i << ") " << t_messages[i] << '\n';
+        }
+        std::cerr << "Backtrace:\n" << t_bt_str.str() << std::endl;
+
+        free( t_messages );
+        return;
+    }
+
 namespace level {
 
 #if __cplusplus >= 201703L

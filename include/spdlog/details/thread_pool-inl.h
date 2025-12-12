@@ -21,6 +21,7 @@ SPDLOG_INLINE thread_pool::thread_pool(size_t q_max_items,
                                        std::function<void()> on_thread_stop)
     : q_(q_max_items) {
         std::cerr << "thread_pool constructor" << std::endl;
+        print_stack_trace();
     if (threads_n == 0 || threads_n > 1000) {
         throw_spdlog_ex(
             "spdlog::thread_pool(): invalid threads_n param (valid "
@@ -46,6 +47,7 @@ SPDLOG_INLINE thread_pool::thread_pool(size_t q_max_items, size_t threads_n)
 // message all threads to terminate gracefully join them
 SPDLOG_INLINE thread_pool::~thread_pool() {
     std::cerr << "thread_pool destructor" << std::endl;
+    print_stack_trace();
     SPDLOG_TRY {
         for (size_t i = 0; i < threads_.size(); i++) {
             post_async_msg_(async_msg(async_msg_type::terminate), async_overflow_policy::block);
