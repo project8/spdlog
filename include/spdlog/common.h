@@ -279,6 +279,10 @@ enum level_enum : int {
     { "T", "D", "I", "N", "W", "E", "C", "O" }
 #endif
 
+SPDLOG_API const string_view_t &to_string_view(spdlog::level::level_enum l) SPDLOG_NOEXCEPT;
+SPDLOG_API const char *to_short_c_str(spdlog::level::level_enum l) SPDLOG_NOEXCEPT;
+SPDLOG_API spdlog::level::level_enum from_str(const std::string &name) SPDLOG_NOEXCEPT;
+
 }  // namespace level
 
 // Color mode used by sinks with color support.
