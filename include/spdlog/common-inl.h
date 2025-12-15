@@ -13,6 +13,10 @@
 #include <iostream>
 #include <execinfo.h>
 #include <sstream>
+#include <cstdlib>
+#include <memory>
+#include <cxxabi.h>
+
 
 namespace spdlog {
 
