@@ -286,6 +286,7 @@ SPDLOG_API spdlog::level::level_enum from_str(const std::string &name) SPDLOG_NO
 }  // namespace level
 
 SPDLOG_API void print_stack_trace() SPDLOG_NOEXCEPT;
+SPDLOG_API std::string demangle( const char* a_name ) SPDLOG_NOEXCEPT;
 
 // Color mode used by sinks with color support.
 //

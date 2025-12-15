@@ -29,12 +29,21 @@ namespace spdlog {
         std::stringstream t_bt_str;
         for( int i = 0; i < t_size && t_messages != nullptr; ++i )
         {
-            t_bt_str << "[bt]: (" << i << ") " << t_messages[i] << '\n';
+            t_bt_str << "[bt]: (" << i << ") " << demangle(t_messages[i]) << '\n';
         }
         std::cerr << "Backtrace:\n" << t_bt_str.str() << std::endl;
 
         free( t_messages );
         return;
+    }
+
+    SPDLOG_INLINE std::string demangle( const char* a_name ) SPDLOG_NOEXCEPT
+    {
+        int t_status = -4; // some arbitrary value to eliminate the compiler warning
+
+        std::unique_ptr< char, void(*)( void* ) > res( abi::__cxa_demangle( a_name, NULL, NULL, &t_status ), std::free );
+
+        return ( t_status==0 ) ? res.get() : a_name ;
     }
 
 namespace level {
